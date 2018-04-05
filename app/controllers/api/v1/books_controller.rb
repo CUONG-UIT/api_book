@@ -3,7 +3,7 @@ class Api::V1::BooksController < ApplicationController
   before_action :find_book,only: [:show,:update,:destroy]
 
   def index
-    @books = Book.all
+    @books = Book.all.page(params[:page]).per(4)
     render json: @books
   end
 
