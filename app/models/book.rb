@@ -1,5 +1,4 @@
 class Book < ApplicationRecord
   belongs_to :user
-  validates :title,present: true
-  validates :author,present: true
+  validates_presence_of :title, :author
 end
