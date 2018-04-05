@@ -1,6 +1,6 @@
 class Api::V1::BooksController < ApplicationController
   skip_before_action :verify_authenticity_token ,raise: false
-  before_action :find_book,only: [:show,:updatea,:destroy]
+  before_action :find_book,only: [:show,:update,:destroy]
 
   def index
     @books = Book.all
