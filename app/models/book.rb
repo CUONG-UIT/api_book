@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
   belongs_to :user
-  validate :title,present: true
-  validate :author,present: true
+  validates :title,present: true
+  validates :author,present: true
 end

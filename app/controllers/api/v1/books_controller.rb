@@ -12,7 +12,7 @@ class Api::V1::BooksController < ApplicationController
   end
 
   def create
-    @book = current_user.books.built(book_params)
+    @book = current_user.books.build(book_params)
     if @book.save
       render json: @book , status: :ok
     else
