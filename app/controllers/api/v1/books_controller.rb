@@ -9,7 +9,6 @@ class Api::V1::BooksController < ApplicationController
     else
       @books = Book.where(author: params[:author])
     end
-
     render json: @books
   end
 
