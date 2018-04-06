@@ -3,7 +3,12 @@ class Api::V1::BooksController < ApplicationController
   before_action :find_book,only: [:show,:update,:destroy]
 
   def index
-    @books = Book.all.page(params[:page]).per(4)
+    if params[:author].blank?
+      @books = Book.all.page(params[:page]).per(3)
+    else
+      @books = Book.where(author: params[:author])
+    end
+
     render json: @books
   end
 
