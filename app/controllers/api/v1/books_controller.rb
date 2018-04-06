@@ -3,7 +3,7 @@ class Api::V1::BooksController < ApplicationController
   before_action :find_book,only: [:show,:update,:destroy]
 
   def index
-    @books = Book.all
+    @books = Book.all.page(params[:page]).per(4)
     render json: @books
   end
 
@@ -12,7 +12,7 @@ class Api::V1::BooksController < ApplicationController
   end
 
   def create
-    @book = current_user.books.build(book_params)
+    @book = current_api_v1_user.books.build(book_params)
     if @book.save
       render json: @book , status: :ok
     else
@@ -40,6 +40,6 @@ class Api::V1::BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title,:author,:description)
+    params.permit(:title,:author,:description)
   end
 end
